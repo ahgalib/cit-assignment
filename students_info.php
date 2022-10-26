@@ -44,7 +44,7 @@
                     <td><?= $info['name']?></td>
                     <td><?= $info['email']?></td>
                     <td><?= $info['roll']?></td>
-                    <td><img src="" alt=""></td>
+                    <td><img src="images/<?= $info['image']?>" alt="" style="width:100px;"></td>
                        
                     </tr>
                 <?php }}else{?>

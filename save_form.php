@@ -66,7 +66,7 @@ session_start();
 
 
 //$img = $_FILES['image'];
-print_r($_FILES);die();
+// print_r($_FILES);die();
 
 $name = $_POST['name'];
 $email = $_POST['email'];
@@ -79,6 +79,20 @@ $lower = preg_match('@[a-z]@', $password);
 $number = preg_match('@[0-9]@', $password);
 $spsl = preg_match('@[$,&,*,#]@', $password);
 $after_hash = password_hash($password,PASSWORD_DEFAULT);
+
+$file_name = $_FILES['image']['name'];
+$explod = explode('.',$file_name);
+$extension = end($explod);
+$size = $_FILES['image']['size'];
+$allowed_ext = array('jpg','png','jpeg');
+
+$rend_name = rand(11111,888888);
+//echo ($rend_name);die;
+//echo ($extension);die;
+$new_name = $rend_name.".".$extension;
+//echo $new_name;
+$file_tmp = $_FILES['image']['tmp_name'];
+//print_r($file_tmp);die;
 
 if(empty($name)){
     $_SESSION['nam_err'] = 'Please Enter Your Name';
@@ -117,15 +131,34 @@ if($flag){
     // echo $email;
     // echo $roll;
     // echo $password;
-
-    $insert_row = "INSERT INTO students(name,email,roll,password) VALUES('$name','$email','$roll','$after_hash')";
-    $query = mysqli_query($conn,$insert_row);
-    if($query){
-       $_SESSION['success'] = "Data inserted successfull";
-       header('location:students_info.php');
+    if(in_array($extension,$allowed_ext)){
+        if($size<512000){
+            $insert_row = "INSERT INTO students(name,email,roll,password) VALUES('$name','$email','$roll','$after_hash')";
+            $query = mysqli_query($conn,$insert_row);
+            $user_id = mysqli_insert_id($conn);
+            $file_new_locatiion = 'images/'.$new_name;
+            move_uploaded_file($file_tmp,$file_new_locatiion);
+            $update_user = "UPDATE students SET image='$new_name'WHERE id='$user_id'";
+            mysqli_query($conn,$update_user);
+            if($query){
+               $_SESSION['success'] = "Data inserted successfull";
+               header('location:students_info.php');
+            }else{
+                echo "query failed";
+            }
+        }else{
+            echo "size is too big";
+        }
+        echo "allowed";
+    
+    
+    
+        
     }else{
-        echo "query failed";
-    }
+        echo "not allowed";
+    }die;
+
+   
     //$insert = "INSERT INTO students(name, email,roll, password)VALUES('$name', '$email','$roll','$after_hash')";
     //         $query = mysqli_query($conn, $insert);
     //         if($query){
