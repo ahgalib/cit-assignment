@@ -36,8 +36,6 @@
                 // "<pre/>";die();
                 if($row>0){
                     foreach($query as $key=>$info){
-                
-                
                 ?>
                     <tr>
                     <th scope="row"><?= $key+1?></th>
