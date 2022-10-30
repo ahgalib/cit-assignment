@@ -1,9 +1,9 @@
 <?php
-	include('layouts/header.php');
+	include('../layouts/header.php');
 ?>
 
 <?php
-	include('layouts/sidebar.php');
+	include('../layouts/sidebar.php');
 ?>
 
 <div class="content-body">
@@ -31,7 +31,7 @@
 
 
 <?php 
-	include('layouts/footer.php');
+	include('../layouts/footer.php');
 ?>
 
  

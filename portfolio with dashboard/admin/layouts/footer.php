@@ -12,21 +12,21 @@
         Scripts
     ***********************************-->
     <!-- Required vendors -->
-    <script src="./dashboardFiles/vendor/global/global.min.js"></script>
-	<script src="./dashboardFiles/vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
-	<script src="./dashboardFiles/vendor/chart.js/Chart.bundle.min.js"></script>
-    <script src="./dashboardFiles/js/custom.min.js"></script>
-	<script src="./dashboardFiles/js/deznav-init.js"></script>
-	<script src="./dashboardFiles/vendor/owl-carousel/owl.carousel.js"></script>
+    <script src="../dashboardFiles/vendor/global/global.min.js"></script>
+	<script src="../dashboardFiles/vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+	<script src="../dashboardFiles/vendor/chart.js/Chart.bundle.min.js"></script>
+    <script src="../dashboardFiles/js/custom.min.js"></script>
+	<script src="../dashboardFiles/js/deznav-init.js"></script>
+	<script src="../dashboardFiles/vendor/owl-carousel/owl.carousel.js"></script>
 	
 	<!-- Chart piety plugin files -->
-    <script src="./vendor/peity/jquery.peity.min.js"></script>
+    <script src="../vendor/peity/jquery.peity.min.js"></script>
 	
 	<!-- Apex Chart -->
-	<script src="./vendor/apexchart/apexchart.js"></script>
+	<script src="../vendor/apexchart/apexchart.js"></script>
 	
 	<!-- Dashboard 1 -->
-	<script src="./js/dashboard/dashboard-1.js"></script>
+	<script src="../js/dashboard/dashboard-1.js"></script>
 	<script>
 		function carouselReview(){
 			/*  testimonial one function by = owl.carousel.js */

@@ -1,4 +1,4 @@
-
+<?php session_start();?>
 <!DOCTYPE html>
 <html lang="en" class="h-100">
 
@@ -33,7 +33,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label class="mb-1 text-white"><strong>Password</strong></label>
-                                            <input type="text" class="form-control" name="password">
+                                            <input type="password" class="form-control" name="password">
                                         </div>
                                         <div class="form-row d-flex justify-content-between mt-4 mb-2">
                                             <div class="form-group">
@@ -73,6 +73,20 @@
 <script src="./dashboardFiles/vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
 <script src="./dashboardFiles/js/custom.min.js"></script>
 <script src="./dashboardFiles/js/deznav-init.js"></script>
+
+<!-- sweet alert -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- for error -->
+<?php if(isset($_SESSION['error'])){?>  
+    <script>
+        Swal.fire({
+  icon: 'error',
+  title: 'Oops...',
+  text: '<?=$_SESSION["error"]?>',
+  footer: '<a href="">Why do I have this issue?</a>'
+})
+    </script>
+<?php } session_unset();?>
 
 </body>
 
