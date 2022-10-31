@@ -13,10 +13,12 @@ if($row['exist'] == 1){
     $stu_pass = "SELECT * FROM students WHERE email = '$email'";
     $stu_query = mysqli_query($con,$stu_pass);
     $stu_row = mysqli_fetch_assoc($stu_query);
-    $password = $_POST['password'];
+ 
     
    if(password_verify($password,$stu_row['password'])){
         $_SESSION['sess_check'] = 'session check for the user';
+        $_SESSION['id'] = $stu_row['id'];
+        $_SESSION['name'] = $stu_row['name'];
         header('location:user/index.php');
    }else{
         $_SESSION['error'] = 'Incorrect Password!';

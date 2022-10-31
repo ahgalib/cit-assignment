@@ -1,4 +1,5 @@
 <?php
+session_start();
 	include('../layouts/header.php');
 ?>
 
@@ -16,7 +17,7 @@
 						<div class="card avtivity-card">
 							<div class="card-body">
 								<div class="media align-items-center">
-									<h4>Hello Hello all i think all you are save </h4>
+									<h4>Hello Hello all i think all you are save  <?= (isset($_SESSION['id'])?$_SESSION['id']:'')?></h4>
 								</div>
 									
 							</div>
