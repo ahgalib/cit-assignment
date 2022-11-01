@@ -1,8 +1,13 @@
 <?php
 session_start();
+require ('../db_conn.php');
 if(!isset($_SESSION['sess_check'])){
     header('location:../login.php');
 }
+$id =  $_SESSION['id'];
+$sql = "SELECT * FROM students WHERE id = '$id'";
+$query = mysqli_query($con,$sql);
+$single_fetch = mysqli_fetch_assoc($query);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -77,9 +82,9 @@ if(!isset($_SESSION['sess_check'])){
 							
 							<li class="nav-item dropdown header-profile">
                                 <a class="nav-link" href="javascript:void(0)" role="button" data-toggle="dropdown">
-                                    <img src="./dashboardFiles/images/profile/17.jpg" width="20" alt=""/>
+                                    <img src="../user/upload/<?=$single_fetch['image']?>" width="20" alt=""/>
 									<div class="header-info">
-										<span class="text-black"><strong><?=(isset($_SESSION['name'])?$_SESSION['name']:'')?></strong></span>
+										<span class="text-black"><strong><?=(isset($_SESSION['name'])?$single_fetch['name']:'')?></strong></span>
 										<p class="fs-12 mb-0">Super Admin</p>
 									</div>
                                 </a>

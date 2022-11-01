@@ -7,6 +7,7 @@ $id = $_SESSION['id'];
 $sql = "SELECT * FROM students WHERE id = '$id'";
 $query = mysqli_query($con,$sql);
 $single_fetch = mysqli_fetch_assoc($query);
+
 ?>
 
 <?php
@@ -56,10 +57,10 @@ $single_fetch = mysqli_fetch_assoc($query);
                 <div class="card-body">
                     <form action="profile_image_update.php" method="POST" enctype="multipart/form-data">
                         <div class="mb-3">
-                            <input type="hidden" name="id" class="form-control" value="">
+                            <input type="hidden" name="id" class="form-control" value="<?=$id?>">
                             <input type="file" name="image" class="form-control" onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])">
                             <br>
-                            <img id="blah" width="200" src="" alt="">
+                            <img id="blah" width="200" src="upload/<?=$single_fetch['image']?>" alt="">
                         </div>
                         <div class="mb-3">
                             <button type="submit" class="btn btn-primary">Update</button>

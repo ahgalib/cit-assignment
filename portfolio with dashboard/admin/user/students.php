@@ -28,10 +28,10 @@ require ('../db_conn.php');
                         </tr>
                         <?php foreach($query as $key=>$user){ ?>
                             <tr>
-                                <td><td><?=$key + 1?></td></td>
+                                <td><?=$key + 1?></td>
                                 <td><?=$user['name']?></td>
                                 <td><?=$user['email']?></td>
-                                <td><img width="50" src="" alt=""></td>
+                                <td><img width="50" src="" alt="">smr iskmhr</td>
                                 <td>
                                     <div class="dropdown">
                                         <button type="button" class="btn btn-success light sharp" data-toggle="dropdown">
@@ -39,7 +39,7 @@ require ('../db_conn.php');
                                         </button>
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item" href="#">Edit</a>
-                                            <a class="dropdown-item" href="">Delete</a>
+                                            <a class="dropdown-item" href="deleteStudents.php?id=<?=$user['id']?>">Delete</a>
                                         </div>
                                     </div>
                                 </td>

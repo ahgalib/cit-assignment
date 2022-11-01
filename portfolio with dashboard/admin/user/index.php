@@ -33,6 +33,7 @@ session_start();
 
 <?php 
 	include('../layouts/footer.php');
+	
 ?>
 
  
