@@ -8,8 +8,6 @@ session_start();
 
     $sel_logo = "SELECT * FROM banar";
     $query = mysqli_query($con,$sel_logo);
-  
-
 ?>
 
 <div class="content-body">

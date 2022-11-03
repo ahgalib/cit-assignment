@@ -30,6 +30,14 @@
                     <li><a href="../banar/banar.php">Add Banar</a></li>
                 </ul>
             </li>
+            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                    <i class="flaticon-381-television"></i>
+                    <span class="nav-text">Social Incon</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="../social/social.php">Add Social Icon</a></li>
+                </ul>
+            </li>
         </ul>
 
     </div>
