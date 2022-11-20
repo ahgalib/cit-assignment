@@ -6,7 +6,7 @@ session_start();
 <?php
 	include('../layouts/sidebar.php');
 
-    $sel_logo = "SELECT * FROM logo ";
+    $sel_logo = "SELECT * FROM social ";
     $query = mysqli_query($con,$sel_logo);
   
 
@@ -22,24 +22,26 @@ session_start();
                     <thead>
                         <th>Sl no</th>
                         <th>Logo</th>
+                        <th>Link</th>
                         <th>Status</th>
                         <td>Delete</td>
                     </thead>
                     <?php foreach($query as $logo){?>
                     <tr>
                         <td>1</td>
-                        <td><img style="width:100px;"src="upload/<?=$logo['logo']?>" alt=""></td>
+                        <td><i class="<?=$logo['s_logo']?>" style="font-family:fontawesome;font-size:20px;margin:15px;"></i></td>
+                        <td><a href="<?=$logo['link']?>"><?=$logo['link']?></a></td>
                         <td>
                             <?php 
                                 if($logo['status'] == 1){
                             ?>
-                            <button class="btn btn-primary"><a href="update_status.php?id=<?=$logo['id']?>" class="text-light">Active</a></button>
+                            <button class="btn btn-primary"><a href="update_social_status.php?id=<?=$logo['id']?>" class="text-light">Active</a></button>
                             <?php }else{?>
-                                <button class="btn btn-dark"><a href="update_status.php?id=<?=$logo['id']?>" class="text-light">Deactive</a></button>
+                                <button class="btn btn-dark"><a href="update_social_status.php?id=<?=$logo['id']?>" class="text-light">Deactive</a></button>
                             <?php }?>
                         </td>
                         <td>
-                            <button class="btn btn-danger"><a class="text-light"href="delete_logo.php?id=<?=$logo['id']?>">Delete</a></button>
+                            <button class="btn btn-danger"><a class="text-light"href="delete_social.php?id=<?=$logo['id']?>">Delete</a></button>
                         </td> 
                         
                     </tr>
@@ -67,11 +69,17 @@ $fonts =array(
             <div class="col-lg-12 p-4">
                 <div>
                     <h3>Add your logo</h3>
-                    <form action="save_logo.php" method="post" enctype="multipart/form-data">
+                    <form action="save_social.php" method="post" enctype="multipart/form-data">
                         <div class="mb-3">
                             <?php foreach($fonts as $font){?>
-                            <i class="<?php echo $font?>" style="font-family:fontawesome;font-size:30px;margin:15px;"></i>
+                            <i data="<?php echo $font?>" class="<?php echo $font?> icon_class" style="font-family:fontawesome;font-size:30px;margin:15px;"></i>
                             <?php } ?>
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" name="icon" id="icon" class="form-control" placeholder="icon name">
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" name="link"  class="form-control" placeholder="link">
                         </div>
                         <button class="btn btn-info">Submit</button>
                     </form>
@@ -86,5 +94,13 @@ $fonts =array(
 	include('../layouts/footer.php');
 	
 ?>
+
+<script>
+    $('.icon_class').click(function(){
+        let icon_val = $(this).attr('data');
+        //alert(icon_val);
+        $("#icon").attr('value',icon_val);
+    })
+</script>
 
  

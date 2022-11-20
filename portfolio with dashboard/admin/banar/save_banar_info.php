@@ -1,8 +1,9 @@
 <?php
 session_start();
 require('../db_conn.php');
-$greeting = $_POST['greeting'];
-$short_description = $_POST['short_description'];
+$sub_title = $_POST['sub_title'];
+$title = $_POST['title'];
+$description = $_POST['description'];
 
 $file_logo = $_FILES['logo'];
 $exp = explode('.',$file_logo['name']);
@@ -14,10 +15,10 @@ $file_name = $rand_nmbr.'.'.$extn;
 $file_location = 'upload/'.$file_name;
 move_uploaded_file($file_logo['tmp_name'],$file_location);
 
-$alowed_ext = array('jpg','jpeg','png');
+$alowed_ext = array('jpg','jpeg','png','JPEG','JPG');
 if(in_array($extn,$alowed_ext)){
-    if($file_logo['size']<1000000){
-        $sql = "INSERT INTO banar (greeting,short_description,image) VALUES ('$greeting','$short_description','$file_name')";
+    if($file_logo['size']<6000000){
+        $sql = "INSERT INTO banar(sub_title,title,description,image) VALUES ('$sub_title','$title','$description','$file_name')";
         $query = mysqli_query($con,$sql);
        
         header('location:banar.php');

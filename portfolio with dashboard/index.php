@@ -3,37 +3,83 @@ include ('admin/db_conn.php');
   $sel_logo = "SELECT * FROM logo WHERE status= 1";
   $query = mysqli_query($con,$sel_logo);
   $single_fetch = mysqli_fetch_assoc($query);
+
+  //banner section
+  $sel_banar = "SELECT * FROM banar";
+  $banar_query = mysqli_query($con,$sel_banar);
+  $single_fetch_banar = mysqli_fetch_assoc($banar_query);
+
+  //banner section
+  $sel_social = "SELECT * FROM social";
+  $social_query = mysqli_query($con,$sel_social);
+  //$single_fetch_social = mysqli_fetch_assoc($social_query);
+
+  //about section
+  $sel_about = "SELECT * FROM about";
+  $about_query = mysqli_query($con,$sel_about);
+  $single_fetch_about = mysqli_fetch_assoc($about_query);
+
+  //education section
+  $sel_edu = "SELECT * FROM education WHERE status=1";
+  $edu_query = mysqli_query($con,$sel_edu);
+
+  
+  //service section
+  $sel_service = "SELECT * FROM services WHERE status=1";
+  $service_query = mysqli_query($con,$sel_service);
+
+  //work section
+  $sel_work = "SELECT * FROM works";
+  $work_query = mysqli_query($con,$sel_work);
+
+  //testimonial section
+  $sel_tm = "SELECT * FROM testimonial";
+  $tm_query = mysqli_query($con,$sel_tm);
+
+  
+  //sponser section
+  $sel_sponser = "SELECT * FROM sponser WHERE status=1";
+  $sponser_query = mysqli_query($con,$sel_sponser);
+  
+  
+  //contact section
+  $sel_contact = "SELECT * FROM contact";
+  $contact_query = mysqli_query($con,$sel_contact);
+  $single_fetch_contact = mysqli_fetch_assoc($contact_query);
+
 ?>
 <!doctype html>
 <html class="no-js" lang="en">
 
 <!-- Mirrored from themebeyond.com/html/kufa/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 06 Feb 2020 06:27:43 GMT -->
 <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Kufa - Personal Portfolio HTML5 Template</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Kufa - Personal Portfolio HTML5 Template</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
-        <!-- Place favicon.ico in the root directory -->
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
+    <!-- Place favicon.ico in the root directory -->
 
-		<!-- CSS here -->
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/animate.min.css">
-        <link rel="stylesheet" href="css/magnific-popup.css">
-        <link rel="stylesheet" href="css/fontawesome-all.min.css">
-        <link rel="stylesheet" href="css/flaticon.css">
-        <link rel="stylesheet" href="css/slick.css">
-        <link rel="stylesheet" href="css/aos.css">
-        <link rel="stylesheet" href="css/default.css">
-        <link rel="stylesheet" href="css/style.css">
-        <link rel="stylesheet" href="css/responsive.css">
+    <!-- CSS here -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/slick.css">
+    <link rel="stylesheet" href="css/aos.css">
+    <link rel="stylesheet" href="css/default.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+        <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body class="theme-bg">
 
         <!-- preloader -->
-        <div id="preloader">
+        <!-- <div id="preloader">
             <div id="loading-center">
                 <div id="loading-center-absolute">
                     <div class="object" id="object_one"></div>
@@ -41,7 +87,7 @@ include ('admin/db_conn.php');
                     <div class="object" id="object_three"></div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- preloader-end -->
 
         <!-- header-start -->
@@ -97,23 +143,22 @@ include ('admin/db_conn.php');
                 <div class="side-info mb-30">
                     <div class="contact-list mb-30">
                         <h4>Office Address</h4>
-                        <p>123/A, Miranda City Likaoli
-                            Prikano, Dope</p>
+                        <p><?=$single_fetch_contact['address']?></p>
                     </div>
                     <div class="contact-list mb-30">
                         <h4>Phone Number</h4>
-                        <p>+0989 7876 9865 9</p>
+                        <p><?=$single_fetch_contact['phone']?></p>
                     </div>
                     <div class="contact-list mb-30">
                         <h4>Email Address</h4>
-                        <p>info@example.com</p>
+                        <p><?=$single_fetch_contact['email']?></p>
                     </div>
                 </div>
                 <div class="social-icon-right mt-20">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-google-plus-g"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <?php 
+                    foreach($social_query as $social){?>
+                    <a href="<?= $social['link']?>"> <i class="<?= $social['s_logo']?>"></i></a>
+                    <?php }?>
                 </div>
             </div>
             <div class="offcanvas-overly"></div>
@@ -130,15 +175,16 @@ include ('admin/db_conn.php');
                     <div class="row align-items-center">
                         <div class="col-xl-7 col-lg-6">
                             <div class="banner-content">
-                                <h6 class="wow fadeInUp" data-wow-delay="0.2s">HELLO!</h6>
-                                <h2 class="wow fadeInUp" data-wow-delay="0.4s">I am Will Smith</h2>
-                                <p class="wow fadeInUp" data-wow-delay="0.6s">I'm Will Smith, professional web developer with long time experience in this field​.</p>
+                                <h6 class="wow fadeInUp" data-wow-delay="0.2s"><?=$single_fetch_banar['sub_title']?>!</h6>
+                                <h2 class="wow fadeInUp" data-wow-delay="0.4s"><?=$single_fetch_banar['title']?></h2>
+                                <p class="wow fadeInUp" data-wow-delay="0.6s"><?=$single_fetch_banar['description']?></p>
                                 <div class="banner-social wow fadeInUp" data-wow-delay="0.8s">
                                     <ul>
-                                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-pinterest"></i></a></li>
+                                    <?php 
+                                        foreach($social_query as $social){?>
+                                        <a href="<?= $social['link']?>"><i class="<?= $social['s_logo']?>" style="font-size:30px;margin:4px;"></i></a>
+                                        <?php }?>
+                                        
                                     </ul>
                                 </div>
                                 <a href="#" class="btn wow fadeInUp" data-wow-delay="1s">SEE PORTFOLIOS</a>
@@ -146,7 +192,7 @@ include ('admin/db_conn.php');
                         </div>
                         <div class="col-xl-5 col-lg-6 d-none d-lg-block">
                             <div class="banner-img text-right">
-                                <img src="img/banner/banner_img.png" alt="">
+                                <img src="admin/banar/upload/<?=$single_fetch_banar['image']?>" alt="" style="width:700px;">
                             </div>
                         </div>
                     </div>
@@ -170,69 +216,27 @@ include ('admin/db_conn.php');
                                 <h2>About Me</h2>
                             </div>
                             <div class="about-content">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum, sed repudiandae odit deserunt, quas
-                                    quibusdam necessitatibus nesciunt eligendi esse sit non reprehenderit quisquam asperiores maxime
-                                    blanditiis culpa vitae velit. Numquam!</p>
-                                <h3>Education:</h3>
+                                <p><?php echo $single_fetch_about['about_me']?></p>
+                                <h3>Skill:</h3>
                             </div>
                             <!-- Education Item -->
+                            <?php foreach($edu_query as $edu){?>
                             <div class="education">
-                                <div class="year">2020</div>
+                                <div class="year"><?=$edu['skill']?></div>
                                 <div class="line"></div>
                                 <div class="location">
-                                    <span>PHD of Interaction Design &amp; Animation</span>
+                                    <span><?=$edu['title']?></span>
                                     <div class="progressWrapper">
                                         <div class="progress">
-                                            <div class="progress-bar wow slideInLefts" data-wow-delay="0.2s" data-wow-duration="2s" role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                                            <div class="progress-bar wow slideInLefts" data-wow-delay="0.2s" data-wow-duration="2s" role="progressbar" style="width: <?=$edu['percentage']?>%" aria-valuenow="<?=$edu['percentage']?>%" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <?php }?>
                             <!-- End Education Item -->
-                            <!-- Education Item -->
-                            <div class="education">
-                                <div class="year">2016</div>
-                                <div class="line"></div>
-                                <div class="location">
-                                    <span>Master of Database Administration</span>
-                                    <div class="progressWrapper">
-                                        <div class="progress">
-                                            <div class="progress-bar wow slideInLefts" data-wow-delay="0.2s" data-wow-duration="2s" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Education Item -->
-                            <!-- Education Item -->
-                            <div class="education">
-                                <div class="year">2010</div>
-                                <div class="line"></div>
-                                <div class="location">
-                                    <span>Bachelor of Computer Engineering</span>
-                                    <div class="progressWrapper">
-                                        <div class="progress">
-                                            <div class="progress-bar wow slideInLefts" data-wow-delay="0.2s" data-wow-duration="2s" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0"
-                                                aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Education Item -->
-                            <!-- Education Item -->
-                            <div class="education">
-                                <div class="year">2005</div>
-                                <div class="line"></div>
-                                <div class="location">
-                                    <span>Diploma of Computer</span>
-                                    <div class="progressWrapper">
-                                        <div class="progress">
-                                            <div class="progress-bar wow slideInLefts" data-wow-delay="0.2s" data-wow-duration="2s" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0"
-                                                aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Education Item -->
+                           
+                            
                         </div>
                     </div>
                 </div>
@@ -251,60 +255,17 @@ include ('admin/db_conn.php');
                         </div>
                     </div>
 					<div class="row">
-						<div class="col-lg-4 col-md-6">
-							<div class="icon_box_01 wow fadeInLeft" data-wow-delay="0.2s">
-                                <i class="fab fa-react"></i>
-								<h3>Creative Design</h3>
-								<p>
-									Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum indust.
-								</p>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-6">
-							<div class="icon_box_01 wow fadeInLeft" data-wow-delay="0.4s">
-								<i class="fab fa-free-code-camp"></i>
-								<h3>Unlimited Features</h3>
-								<p>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum indust.
-								</p>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-6">
-							<div class="icon_box_01 wow fadeInLeft" data-wow-delay="0.6s">
-                                <i class="fal fa-desktop"></i>
-								<h3>Ultra Responsive</h3>
-								<p>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum indust.
-								</p>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-6">
-							<div class="icon_box_01 wow fadeInLeft" data-wow-delay="0.2s">
-                                <i class="fal fa-lightbulb-on"></i>
-								<h3>Creative Ideas</h3>
-								<p>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum indust.
-								</p>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-6">
-							<div class="icon_box_01 wow fadeInLeft" data-wow-delay="0.4s">
-                                <i class="fal fa-edit"></i>
-								<h3>Easy Customization</h3>
-								<p>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum indust.
-								</p>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-6">
-							<div class="icon_box_01 wow fadeInLeft" data-wow-delay="0.6s">
-                                <i class="fal fa-headset"></i>
-								<h3>Supper Support</h3>
-								<p>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum indust.
-								</p>
-							</div>
-						</div>
+                        <?php foreach($service_query as $service){?>
+                            <div class="col-lg-4 col-md-6">
+                                <div class="icon_box_01 wow fadeInLeft" data-wow-delay="0.2s">
+                                    <i class="<?= $service['icon']?>"></i>
+                                    <h3><?= $service['title']?></h3>
+                                    <p><?= $service['description']?></p>
+                                </div>
+                            </div>
+						<?php }?>
+						
+						
 					</div>
 				</div>
 			</section>
@@ -322,78 +283,22 @@ include ('admin/db_conn.php');
                         </div>
                     </div>
                     <div class="row">
+                    <?php foreach($work_query as $work){?>
                         <div class="col-lg-4 col-md-6 pitem">
                             <div class="speaker-box">
 								<div class="speaker-thumb">
-									<img src="img/images/1.jpg" alt="img">
+									<img src="admin/work/upload/<?php echo $work['image']?>" alt="img" style="height:400px;">
 								</div>
 								<div class="speaker-overlay">
-									<span>Design</span>
-									<h4><a href="portfolio-single.html">Hamble Triangle</a></h4>
-									<a href="portfolio-single.html" class="arrow-btn">More information <span></span></a>
+									<span><?=$work['category']?></span>
+									<h4><a href="single_work.php?id=<?=$work['id']?>"><?php echo $work['title']?></a></h4>
+									<a href="single_work.php?id=<?=$work['id']?>" class="arrow-btn">More information <span></span></a>
 								</div>
 							</div>
                         </div>
-                        <div class="col-lg-4 col-md-6 pitem">
-                            <div class="speaker-box">
-								<div class="speaker-thumb">
-									<img src="img/images/2.jpg" alt="img">
-								</div>
-								<div class="speaker-overlay">
-									<span>Video</span>
-									<h4><a href="portfolio-single.html">Dark Beauty</a></h4>
-									<a href="portfolio-single.html" class="arrow-btn">More information <span></span></a>
-								</div>
-							</div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 pitem">
-                            <div class="speaker-box">
-								<div class="speaker-thumb">
-									<img src="img/images/3.jpg" alt="img">
-								</div>
-								<div class="speaker-overlay">
-									<span>Audio</span>
-									<h4><a href="portfolio-single.html">Gilroy Limbo.</a></h4>
-									<a href="portfolio-single.html" class="arrow-btn">More information <span></span></a>
-								</div>
-							</div>
-                        </div>
-						<div class="col-lg-4 col-md-6 pitem">
-                            <div class="speaker-box">
-								<div class="speaker-thumb">
-									<img src="img/images/4.jpg" alt="img">
-								</div>
-								<div class="speaker-overlay">
-									<span>Design</span>
-									<h4><a href="portfolio-single.html">Ipsum which</a></h4>
-									<a href="portfolio-single.html" class="arrow-btn">More information <span></span></a>
-								</div>
-							</div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 pitem">
-                            <div class="speaker-box">
-								<div class="speaker-thumb">
-									<img src="img/images/5.jpg" alt="img">
-								</div>
-								<div class="speaker-overlay">
-									<span>Creative</span>
-									<h4><a href="portfolio-single.html">Eiusmod tempor</a></h4>
-									<a href="portfolio-single.html" class="arrow-btn">More information <span></span></a>
-								</div>
-							</div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 pitem">
-                            <div class="speaker-box">
-								<div class="speaker-thumb">
-									<img src="img/images/6.jpg" alt="img">
-								</div>
-								<div class="speaker-overlay">
-									<span>UX/UI</span>
-									<h4><a href="portfolio-single.html">again there</a></h4>
-									<a href="portfolio-single.html" class="arrow-btn">More information <span></span></a>
-								</div>
-							</div>
-                        </div>
+                        <?php }?>
+						
+                        
                     </div>
                 </div>
             </section>
@@ -469,30 +374,23 @@ include ('admin/db_conn.php');
                     <div class="row justify-content-center">
                         <div class="col-xl-9 col-lg-10">
                             <div class="testimonial-active">
-                                <div class="single-testimonial text-center">
-                                    <div class="testi-avatar">
-                                        <img src="img/images/testi_avatar.png" alt="img">
-                                    </div>
-                                    <div class="testi-content">
-                                        <h4><span>“</span> An event is a message sent by an object to signal the occur rence of an action. The action can causd user interaction such as a button click, or it can result <span>”</span></h4>
-                                        <div class="testi-avatar-info">
-                                            <h5>tonoy jakson</h5>
-                                            <span>head of idea</span>
+                                
+                                <?php foreach($tm_query as $tm){?>
+                                    <div class="single-testimonial text-center">
+                                        <div class="testi-avatar">
+                                            <img src="admin/testimonial/upload/<?=$tm['image']?>" alt="img" style="width:200px;height:160px;border-radius:50%;">
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="single-testimonial text-center">
-                                    <div class="testi-avatar">
-                                        <img src="img/images/testi_avatar.png" alt="img">
-                                    </div>
-                                    <div class="testi-content">
-                                        <h4><span>“</span> An event is a message sent by an object to signal the occur rence of an action. The action can causd user interaction such as a button click, or it can result <span>”</span></h4>
-                                        <div class="testi-avatar-info">
-                                            <h5>tonoy jakson</h5>
-                                            <span>head of idea</span>
+                                    
+                                        <div class="testi-content">
+                                            <h4><span>“</span> An event is a message sent by an object to signal the occur rence of an action. The action can causd user interaction such as a button click, or it can result <span>”</span></h4>
+                                            <div class="testi-avatar-info">
+                                                <h5><?=$tm['name']?></h5>
+                                                <span><?=$tm['rank']?></span>
+                                            </div>
                                         </div>
+                                    
                                     </div>
-                                </div>
+                                <?php }?> 
                             </div>
                         </div>
                     </div>
@@ -549,22 +447,22 @@ include ('admin/db_conn.php');
                                 <h2>Contact Information</h2>
                             </div>
                             <div class="contact-content">
-                                <p>Event definition is - somthing that happens occurre How evesnt sentence. Synonym when an unknown printer took a galley.</p>
-                                <h5>OFFICE IN <span>NEW YORK</span></h5>
+                                <p><?=$single_fetch_contact['description']?></p>
+                                <h5>OFFICE IN <span><?=$single_fetch_contact['city']?></span></h5>
                                 <div class="contact-list">
                                     <ul>
-                                        <li><i class="fas fa-map-marker"></i><span>Address :</span>Event Center park WT 22 New York</li>
-                                        <li><i class="fas fa-headphones"></i><span>Phone :</span>+9 125 645 8654</li>
-                                        <li><i class="fas fa-globe-asia"></i><span>e-mail :</span>info@exemple.com</li>
+                                        <li><i class="fas fa-map-marker"></i><span>Address :</span><?=$single_fetch_contact['address']?></li>
+                                        <li><i class="fas fa-headphones"></i><span>Phone :</span><?=$single_fetch_contact['phone']?></li>
+                                        <li><i class="fas fa-globe-asia"></i><span>e-mail :</span><?=$single_fetch_contact['email']?></li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="contact-form">
-                                <form action="#">
-                                    <input type="text" placeholder="your name *">
-                                    <input type="email" placeholder="your email *">
+                                <form action="save_message.php" method="post">
+                                    <input type="text" name="name" placeholder="your name *">
+                                    <input type="email" name="email" placeholder="your email *">
                                     <textarea name="message" id="message" placeholder="your message *"></textarea>
                                     <button class="btn">BUY TICKET</button>
                                 </form>

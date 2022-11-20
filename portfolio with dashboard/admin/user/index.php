@@ -17,7 +17,7 @@ session_start();
 						<div class="card avtivity-card">
 							<div class="card-body">
 								<div class="media align-items-center">
-									<h4>Hello Hello all i think all you are save  <?= (isset($_SESSION['id'])?$_SESSION['id']:'')?></h4>
+									<h4>Hello <span style="color:red;font-weight:bold;"><?=(isset($_SESSION['id'])?$_SESSION['name']:'')?></span>Welcome to Admin Dashboard</h4>
 								</div>
 									
 							</div>

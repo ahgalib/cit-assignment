@@ -22,6 +22,7 @@
                         <div class="row no-gutters">
                             <div class="col-xl-12">
                                 <div class="auth-form">
+                                
 									<div class="text-center mb-3">
 										<a href="index.html"><img src="./dashboardFiles/images/logo-full.png" alt=""></a>
 									</div>
@@ -35,6 +36,16 @@
                                             <label class="mb-1 text-white"><strong>Password</strong></label>
                                             <input type="password" class="form-control" name="password">
                                         </div>
+                                        <?php 
+                                            if(isset($_SESSION['error'])){
+                                            ?>
+                                            <div>
+                                                <div class="mt-2">
+                                                    <strong class="text-danger"><?=$_SESSION['error'];?></strong>
+                                                </div>
+                                            </div>
+
+                                        <?php }?>
                                         <div class="form-row d-flex justify-content-between mt-4 mb-2">
                                             <div class="form-group">
                                                <div class="custom-control custom-checkbox ml-1 text-white">
