@@ -70,7 +70,7 @@ session_start();
             )
             ?>
 
-<!-- all icon end -->
+            <!-- all icon end -->
 
             <div class="col-md-6 p-4">
                 <div>
