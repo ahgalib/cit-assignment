@@ -23,7 +23,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/user',[userCon::class,'index']);
+Route::get('/user',[userCon::class,'index'])->name('user');
+Route::get('/user/editProfile',[userCon::class,'showEditPage'])->name('editProfile');
+Route::post('/user/saveEditUser/32/898',[userCon::class,'saveEditPage'])->name('save_edit_user');
 
 
 

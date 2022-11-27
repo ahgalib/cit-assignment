@@ -1,5 +1,4 @@
-@extends('layouts.app')
-
+@extends('admin.dashboard')
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -14,7 +13,7 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    Well Come to dashboard page
                 </div>
             </div>
         </div>
