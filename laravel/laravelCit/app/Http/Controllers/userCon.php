@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Auth;
 use Hash;
+use Image;
 
 class userCon extends Controller
 {
@@ -43,5 +44,20 @@ class userCon extends Controller
                 return back()->with('error','password doesnot match');
             }
         }
+    }
+
+    public function saveUserImage(Request $request){
+        //return $request->file('image');
+        $file_name = $request['image'];
+        $extension = $file_name->getClientOriginalExtension();
+        $image_name = Auth::id().'.'.$extension;
+        //echo $image_name;die;
+        Image::make($file_name)->save(public_path('upload/user/'.$image_name));
+
+        User::find(Auth::id())->update([
+            'image'=>$image_name,
+        ]);
+
+        return back()->with('success','profile picture updated successfully');
     }
 }

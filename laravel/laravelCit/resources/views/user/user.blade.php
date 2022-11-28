@@ -14,14 +14,16 @@
                             <th>Email</th>
                             <th>Action</th>
                         </tr>
+                        @foreach($user as $key=>$user_info)
                         <tr>
-                            @foreach($user as $key=>$user_info)
+
                                 <td>{{$key+1}}</td>
                                 <td>{{$user_info['name']}}</td>
                                 <td>{{$user_info['email']}}</td>
                                 <td>Delete</td>
-                                @endforeach
+
                         </tr>
+                        @endforeach
                     </table>
             </div>
         </div>

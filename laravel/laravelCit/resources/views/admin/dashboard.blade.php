@@ -24,45 +24,62 @@
 
 		<!-- partial:../../partials/_sidebar.html -->
 		<nav class="sidebar">
-      <div class="sidebar-header">
-        <a href="#" class="sidebar-brand">
-          Noble<span>UI</span>
-        </a>
-        <div class="sidebar-toggler not-active">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </div>
-      <div class="sidebar-body">
-        <ul class="nav">
-          <li class="nav-item nav-category">Main</li>
-          <li class="nav-item">
-            <a href="{{route('home')}}" class="nav-link">
-              <i class="link-icon" data-feather="box"></i>
-              <span class="link-title">Dashboard</span>
-            </a>
-          </li>
-          <li class="nav-item nav-category">Users</li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#emails" role="button" aria-expanded="false" aria-controls="emails">
-              <i class="link-icon" data-feather="mail"></i>
-              <span class="link-title">User Info</span>
-              <i class="link-arrow" data-feather="chevron-down"></i>
-            </a>
-            <div class="collapse" id="emails">
-              <ul class="nav sub-menu">
+            <div class="sidebar-header">
+                <a href="#" class="sidebar-brand">
+                Noble<span>UI</span>
+                </a>
+                <div class="sidebar-toggler not-active">
+                <span></span>
+                <span></span>
+                <span></span>
+                </div>
+            </div>
+        <div class="sidebar-body">
+            <ul class="nav">
+                <li class="nav-item nav-category">Main</li>
                 <li class="nav-item">
-                  <a href="{{route('user')}}" class="nav-link">Inbox</a>
+                    <a href="{{route('home')}}" class="nav-link">
+                    <i class="link-icon" data-feather="box"></i>
+                    <span class="link-title">Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item nav-category">Users</li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="collapse" href="#emails" role="button" aria-expanded="false" aria-controls="emails">
+                    <i class="link-icon" data-feather="mail"></i>
+                    <span class="link-title">User Info</span>
+                    <i class="link-arrow" data-feather="chevron-down"></i>
+                    </a>
+                    <div class="collapse" id="emails">
+                    <ul class="nav sub-menu">
+                        <li class="nav-item">
+                        <a href="{{route('user')}}" class="nav-link">All Users</a>
+                        </li>
+
+                    </ul>
+                    </div>
                 </li>
 
-              </ul>
-            </div>
-          </li>
+                <li class="nav-item nav-category">Category</li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="collapse" href="#emails" role="button" aria-expanded="false" aria-controls="emails">
+                    <i class="link-icon" data-feather="mail"></i>
+                    <span class="link-title">Category</span>
+                    <i class="link-arrow" data-feather="chevron-down"></i>
+                    </a>
+                    <div class="collapse" id="emails">
+                    <ul class="nav sub-menu">
+                        <li class="nav-item">
+                        <a href="{{route('category')}}" class="nav-link">Categories</a>
+                        </li>
+
+                    </ul>
+                    </div>
+                </li>
 
 
-        </ul>
-      </div>
+            </ul>
+        </div>
     </nav>
     <nav class="settings-sidebar">
       <div class="sidebar-body">
@@ -189,12 +206,12 @@
 						</li>
 						<li class="nav-item dropdown nav-profile">
 							<a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<img src="https://via.placeholder.com/30x30" alt="profile">
+								<img src="{{asset('upload/user')}}/{{Auth::user()->image}}" alt="profile">
 							</a>
 							<div class="dropdown-menu" aria-labelledby="profileDropdown">
 								<div class="dropdown-header d-flex flex-column align-items-center">
 									<div class="figure mb-3">
-										<img src="https://via.placeholder.com/80x80" alt="">
+										<img src="{{asset('upload/user')}}/{{Auth::user()->image}}" alt="">
 									</div>
 									<div class="info text-center">
 										<p class="name font-weight-bold mb-0">{{Auth::user()->name}}</p>
@@ -217,10 +234,15 @@
 										</li>
 
 										<li class="nav-item">
-											<a href="javascript:;" class="nav-link">
+											<a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+
 												<i data-feather="log-out"></i>
 												<span>Log Out</span>
 											</a>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                                @csrf
+                                            </form>
 										</li>
 									</ul>
 								</div>

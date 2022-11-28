@@ -8,7 +8,7 @@
 </nav>
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-6">
             @if(session('success'))
                 <div class="alert alert-success">
                     <h4>{{session('success')}}</h4>
@@ -41,6 +41,17 @@
                 </div>
                 <button type="submit" class="btn btn-primary mr-2">Submit</button>
 
+            </form>
+        </div>
+
+        <div class="col-md-6">
+            <form action="{{route('save_edit_user_image')}}" method="post" enctype="multipart/form-data">
+                @csrf
+                <div class="form-group">
+                    <label for="image">Image</label>
+                    <input type="file" class="form-control" name="image">
+                </div>
+                <button type="submit" class="btn btn-primary mr-2">Submit</button>
             </form>
         </div>
     </div>
