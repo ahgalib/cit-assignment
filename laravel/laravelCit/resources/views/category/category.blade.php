@@ -14,18 +14,19 @@
                         <th>Email</th>
                         <th>Action</th>
                     </tr>
-                    @if($category = 0)
-                        @foreach ($category as $categories)
-                            <tr>
-                                <td></td>
-                            </tr>
-                        @endforeach
-                    @else
-                    <tr>
-                        <p style="color:orange;">No category found</p>
-                    </tr>
 
-                    @endif
+                    @foreach ($category as $key=>$categories)
+                        <tr>
+                            <td>{{$key+1}}</td>
+                            <td>{{$categories['category_name']}}</td>
+                            <td><img src="{{asset('upload/category')}}/{{$categories['category_image']}}" style="width:120px;"></td>
+                            <td>
+                                <button class="btn btn-info">Edit</button>
+                                <button class="btn btn-danger delBut" data-link="{{route('deleteCategory',$categories['id'])}}"><a href="#">Delete</a></button>
+
+                            </td>
+                        </tr>
+                    @endforeach
 
                 </table>
             </div>
@@ -46,7 +47,7 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">category image</label>
-                    <input type="file" class="form-control @error('category_image') is-invalid @enderror" name="category_image" value="{{ old('category_image') }}">
+                    <input type="file" class="form-control @error('category_image') is-invalid @enderror" name="category_image">
 
                     @error('category_image')
                         <span class="invalid-feedback" role="alert">
@@ -65,4 +66,39 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('java_script')
+<script>
+    $('.delBut').click(function(){
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+            if (result.isConfirmed) {
+
+
+                var delPath = $(this).attr('data-link');
+                //alert(delPath);
+                window.location.href = delPath;
+
+            }
+        })
+    })
+</script>
+
+@if(Session('success'))
+<script>
+    Swal.fire(
+    'Deleted!',
+    'Your file has been deleted.',
+    'success'
+    )
+</script>
+@endif
 @endsection

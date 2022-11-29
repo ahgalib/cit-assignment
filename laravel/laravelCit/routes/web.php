@@ -33,3 +33,4 @@ Route::post('/user/saveEditUser/image/78/uis',[userCon::class,'saveUserImage'])-
 Route::get('/showCategory',[categoryCon::class,'showCategoryPage'])->name('category');
 Route::post('/saveCategory/catego/youi/po/e',[categoryCon::class,'saveCategory'])->name('saveCategory');
 
+Route::get('/deleteCategory/{id}',[categoryCon::class,'deleteCategory'])->name('deleteCategory');

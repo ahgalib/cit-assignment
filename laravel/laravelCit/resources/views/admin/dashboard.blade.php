@@ -279,5 +279,8 @@
 	<!-- endinject -->
 	<!-- custom js for this page -->
   <!-- end custom js for this page -->
+  {{-- sweet alert --}}
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  @yield('java_script')
 </body>
 </html>
