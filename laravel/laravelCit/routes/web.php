@@ -34,3 +34,5 @@ Route::get('/showCategory',[categoryCon::class,'showCategoryPage'])->name('categ
 Route::post('/saveCategory/catego/youi/po/e',[categoryCon::class,'saveCategory'])->name('saveCategory');
 
 Route::get('/deleteCategory/{id}',[categoryCon::class,'deleteCategory'])->name('deleteCategory');
+Route::get('/editCategory/{id}',[categoryCon::class,'editCategory'])->name('editCategory');
+Route::post('/saveEditCategory/{id}',[categoryCon::class,'saveEditCategory'])->name('saveEditCategory');

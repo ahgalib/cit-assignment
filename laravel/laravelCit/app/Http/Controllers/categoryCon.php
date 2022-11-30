@@ -43,6 +43,46 @@ class categoryCon extends Controller
         return back()->with('success','category deleted successfully');
     }
 
+    public function editCategory($id){
+        $category = Category::find($id);
+        return view('category.editCategory',compact('category'));
+    }
+
+    public function saveEditCategory(Request $request,$id){
+        //return $request->all();
+        $request->validate([
+            'category_name'=>'required',
+            'category_image'=>'mimes:png,jpg,jpeg|max:3000',
+        ]);
+        if($request->category_image){
+            //echo "image update hobe";
+            $imageFind = Category::find($id);
+            $image =  $imageFind['category_image'];
+            $imagePath = public_path('/upload/category/'.$image);
+            unlink($imagePath);
+
+            $file_name = $request['category_image'];
+            $file_ext = $file_name->getClientOriginalExtension();
+            //echo $file_ext;
+             $file_new_name = Str::lower(str_replace(" ","-",$request['category_name']))."-".rand(00000,99999).".".$file_ext;
+             //echo $file_new_name;
+             Image::make($file_name)->save(public_path('/upload/category/'.$file_new_name));
+             Category::find($id)->update([
+                'category_name'=> $request['category_name'],
+                'category_image'=>$file_new_name,
+             ]);
+             return redirect('/showCategory');
+        }else{
+            //echo "image update hobe na khali category update hobe"
+            Category::find($id)->update([
+                'category_name'=> $request['category_name'],
+
+             ]);
+            return redirect('/showCategory');
+        }
+
+    }
+
 
 
 }
