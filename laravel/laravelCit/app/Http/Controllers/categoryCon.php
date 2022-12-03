@@ -4,14 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Tag;
 use Image;
 use Str;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class categoryCon extends Controller
 {
     public function showCategoryPage(){
         $category = Category::all();
-        return view('category.category',compact('category'));
+        return view('admin.category.category',compact('category'));
     }
 
     public function saveCategory(Request $request){
@@ -45,7 +48,7 @@ class categoryCon extends Controller
 
     public function editCategory($id){
         $category = Category::find($id);
-        return view('category.editCategory',compact('category'));
+        return view('admin.category.editCategory',compact('category'));
     }
 
     public function saveEditCategory(Request $request,$id){
@@ -83,6 +86,44 @@ class categoryCon extends Controller
 
     }
 
+    public function showTagPage(){
+        $tag = Tag::all();
+        return view('admin.category.tag',compact('tag'));
+    }
 
+    public function saveTag(Request $request){
+       // return $request->all();die;
+        $request->validate([
+            'tag_name'=>'required|unique:tags',
+        ]);
+
+        Tag::create([
+            'tag_name'=> $request['tag_name'],
+        ]);
+
+        return back();
+    }
+
+    public function showRolePage(){
+        $permission = Permission::all();
+        $role = Role::all();
+        return view('admin.role',compact('permission','role'));
+    }
+
+    public function savePermission(Request $request){
+        $permission = Permission::create([
+            'name' => $request['permission_name'],
+        ]);
+        return back();
+    }
+
+    public function saveRole(Request $request){
+        //return  $request->all();
+        $role = Role::create([
+            'name' => $request['role_name'],
+        ]);
+        $role->givePermissionTo($request['permission']);
+        return back();
+    }
 
 }

@@ -32,7 +32,15 @@ Route::post('/user/saveEditUser/image/78/uis',[userCon::class,'saveUserImage'])-
 //Category
 Route::get('/showCategory',[categoryCon::class,'showCategoryPage'])->name('category');
 Route::post('/saveCategory/catego/youi/po/e',[categoryCon::class,'saveCategory'])->name('saveCategory');
-
 Route::get('/deleteCategory/{id}',[categoryCon::class,'deleteCategory'])->name('deleteCategory');
 Route::get('/editCategory/{id}',[categoryCon::class,'editCategory'])->name('editCategory');
 Route::post('/saveEditCategory/{id}',[categoryCon::class,'saveEditCategory'])->name('saveEditCategory');
+//Tag
+Route::get('/showTag',[categoryCon::class,'showTagPage'])->name('tag');
+Route::post('/saveTag',[categoryCon::class,'saveTag'])->name('saveTag');
+Route::get('/deleteTag/{id}',[categoryCon::class,'deleteTag'])->name('deleteTag');
+
+//role management
+Route::get('/showRole',[categoryCon::class,'showRolePage'])->name('role');
+Route::post('/saveRole',[categoryCon::class,'saveRole'])->name('saveRole');
+Route::post('/savePermission',[categoryCon::class,'savePermission'])->name('savePermission');

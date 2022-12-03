@@ -12,11 +12,11 @@ class userCon extends Controller
 {
     public function index(){
         $user = User::all();
-        return view('user.user',compact('user'));
+        return view('admin.user.user',compact('user'));
     }
 
     public function showEditPage(){
-        return view('user.edit_user');
+        return view('admin.user.edit_user');
     }
 
     public function saveEditPage(Request $request){

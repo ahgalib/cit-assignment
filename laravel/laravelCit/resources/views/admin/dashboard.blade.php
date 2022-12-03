@@ -74,7 +74,22 @@
                         </li>
 
                     </ul>
+                    <ul class="nav sub-menu">
+                        <li class="nav-item">
+                        <a href="{{route('tag')}}" class="nav-link">Tag</a>
+                        </li>
+
+                    </ul>
                     </div>
+                </li>
+
+                <li class="nav-item">
+                    <a  href="{{route('role')}}" class="nav-link"  role="button" aria-expanded="false" aria-controls="emails">
+                    <i class="link-icon" data-feather="mail"></i>
+                    <span class="link-title">Role</span>
+
+                    </a>
+
                 </li>
 
 
