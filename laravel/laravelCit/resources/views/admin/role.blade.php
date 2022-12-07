@@ -81,8 +81,6 @@
                 <div class="mb-5">
                     <button class="btn btn-primary mr-2 mb-2 mb-md-0 text-white">Add Role</button>
                 </div>
-
-
             </form>
         </div>
     </div>
