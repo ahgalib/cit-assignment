@@ -10,13 +10,13 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-lg-8">
-            <div class="card">
+        <div class="col-lg-9">
+            <div class="card flex-wrap">
                 <div class="card-header">{{ __('Dashboard') }}</div>
-                <div class="card-body">
+                <div class="card-body ">
 
 
-                    <table class="table-striped">
+                    <table class="table-striped" style="font-size:16px;">
                         <tr>
                             <th>SI no</th>
                             <th>Name</th>
@@ -29,7 +29,7 @@
                             <td>{{$roles->name}}</td>
                             <td>
                                 @foreach ($roles->getAllPermissions() as $permissions)
-                                    <span class="badge badge-primary">{{$permissions->name}}</span>
+                                    <span class="badge badge-primary" style="font-size:15px; margin:3px;">{{$permissions->name}}</span>
 
                                 @endforeach
                             </td>
@@ -43,13 +43,13 @@
             </div>
         </div>
 
-        <div class="col-lg-4">
+        <div class="col-lg-3">
             <form action="{{route('savePermission')}}" method="post">
                 <h4>Add Permission</h4>
                 @csrf
                 <div class="form-group">
                     <label for="exampleInputEmail1">Permission</label>
-                    <input type="text" class="form-control" name="permission_name">
+                    <input type="text" class="form-control" name="permission_name" placeholder="add permission">
                 </div>
                 <div class="mt-3 mb-5">
                     <button class="btn btn-primary mr-2 mb-2 mb-md-0 text-white">Add Permission</button>
@@ -62,7 +62,7 @@
                 <h4>Add Role</h4>
                 <div class="mb-3">
                     <label for="exampleInputEmail1">Role name</label>
-                    <input type="text" class="form-control" name="role_name" >
+                    <input type="text" class="form-control" name="role_name" placeholder="add role">
                 </div>
 
 
@@ -78,6 +78,29 @@
                         </div>
                     </div>
                 @endforeach
+                <div class="mb-5">
+                    <button class="btn btn-primary mr-2 mb-2 mb-md-0 text-white">Add Role</button>
+                </div>
+            </form>
+
+            <form action="{{route('saveRole')}}" method="post" class="mt-3">
+                @csrf
+
+
+
+                <h4>Assign Role</h4>
+
+                    <div class="mb-3">
+
+                            <select name="" id="" class="form-control">
+                                <option value="">Select User</option>
+                                @foreach ($user as $users )
+                                    <option value="">{{$users['name']}}</option>
+                                @endforeach
+                            </select>
+
+                    </div>
+
                 <div class="mb-5">
                     <button class="btn btn-primary mr-2 mb-2 mb-md-0 text-white">Add Role</button>
                 </div>

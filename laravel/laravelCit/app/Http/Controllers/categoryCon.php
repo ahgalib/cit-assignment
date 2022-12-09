@@ -9,6 +9,7 @@ use Image;
 use Str;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use App\Models\User;
 
 class categoryCon extends Controller
 {
@@ -107,7 +108,8 @@ class categoryCon extends Controller
     public function showRolePage(){
         $permission = Permission::all();
         $role = Role::all();
-        return view('admin.role',compact('permission','role'));
+        $user = User::all();
+        return view('admin.role',compact('permission','role','user'));
     }
 
     public function savePermission(Request $request){
