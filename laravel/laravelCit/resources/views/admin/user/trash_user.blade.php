@@ -21,16 +21,18 @@
                     <table class="table table-striped">
                         <tr>
                             <th class="checkSelAll"><input type="checkbox" id="checkAll" class="checkSelAll">
-                                Check All</th>
-
+                                Check All
+                            </th>
                             <th>SI no</th>
                             <th>Name</th>
                             <th>Email</th>
+                            <th>Restore</th>
                             <th class="delSingle">Action</th>
 
                         </tr>
                         @foreach($user as $key=>$user_info)
                         <tr>
+
                             <td class="checkSelAll">
                                 <input type="checkbox" name="check[]" value="{{$user_info['id']}}"
                                 class="checkSelAll">
@@ -39,7 +41,11 @@
                             <td>{{$user_info['name']}}</td>
                             <td>{{$user_info['email']}}</td>
                             <td>
-                                <a href="/userDelete/{{$user_info['id']}}" class="btn btn-danger delSingle">Delete</a>
+                                <a href="/userRestore/{{$user_info['id']}}" class="btn btn-success">Restore</a>
+                            </td>
+                            <td>
+                                <a href="/userHardDelete/{{$user_info['id']}}"
+                                class="btn btn-danger delSingle">Delete</a>
                             </td>
 
                         </tr>
@@ -47,7 +53,6 @@
                     </table>
                 </div>
            </form>
-           {{$user->links()}}
         </div>
     </div>
 </div>

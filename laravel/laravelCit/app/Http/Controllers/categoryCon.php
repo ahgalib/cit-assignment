@@ -128,4 +128,10 @@ class categoryCon extends Controller
         return back();
     }
 
+    public function saveAssignRole(Request $request){
+        $user = User::find($request->user_id);
+        $user->assignRole($request->role_id);
+        return back();
+    }
+
 }

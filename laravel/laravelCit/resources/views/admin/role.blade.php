@@ -15,8 +15,7 @@
                 <div class="card-header">{{ __('Dashboard') }}</div>
                 <div class="card-body ">
 
-
-                    <table class="table-striped" style="font-size:16px;">
+                    <table class="table-striped" style="font-size:15px;">
                         <tr>
                             <th>SI no</th>
                             <th>Name</th>
@@ -29,15 +28,56 @@
                             <td>{{$roles->name}}</td>
                             <td>
                                 @foreach ($roles->getAllPermissions() as $permissions)
-                                    <span class="badge badge-primary" style="font-size:15px; margin:3px;">{{$permissions->name}}</span>
+                                    <span class="badge badge-success" style="font-size:14px; margin:3px;">
+                                        {{$permissions->name}}
+                                    </span>
+
+                                @endforeach
+                            </td>
+
+                            <td></td>
+                        </tr>
+                        @endforeach
+                     </table>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">{{ __('Dashboard') }}</div>
+                <div class="card-body ">
+
+                    <table class="table-striped" style="font-size:15px;text-align:center;">
+                        <tr>
+                            <th>SI no</th>
+                            <th>Name</th>
+                            <th>Role</th>
+                            <th>Permission</th>
+                            <th>Action</th>
+                        </tr>
+                        @foreach($user as $si=>$users)
+                        <tr>
+                            <td>{{$si+1}}</td>
+                            <td>{{$users->name}}</td>
+                            <td>
+                                @foreach ($users->getRoleNames() as $assingrole)
+                                    <span class="badge badge-info" style="font-size:13px; margin:3px;">
+                                        {{$assingrole}}
+                                    </span>
+
+                                @endforeach
+
+                            </td>
+                            <td>
+                                @foreach ($users->getAllPermissions() as $permissions)
+                                    <span class="badge badge-warning" style="font-size:13px; margin:3px;">
+                                        {{$permissions->name}}
+                                    </span>
 
                                 @endforeach
                             </td>
                             <td></td>
                         </tr>
                         @endforeach
-
-
                     </table>
                 </div>
             </div>
@@ -83,23 +123,26 @@
                 </div>
             </form>
 
-            <form action="{{route('saveRole')}}" method="post" class="mt-3">
+            <form action="{{route('saveAssignRole')}}" method="post" class="mt-3">
                 @csrf
-
-
-
                 <h4>Assign Role</h4>
+                <div class="mb-3">
+                    <select name="user_id" class="form-control search-select">
+                        <option value="">Select User</option>
+                        @foreach ($user as $users )
+                            <option value="{{$users['id']}}">{{$users['name']}}</option>
+                        @endforeach
+                    </select>
+                </div>
 
-                    <div class="mb-3">
-
-                            <select name="" id="" class="form-control">
-                                <option value="">Select User</option>
-                                @foreach ($user as $users )
-                                    <option value="">{{$users['name']}}</option>
-                                @endforeach
-                            </select>
-
-                    </div>
+                <div class="mb-3">
+                    <select name="role_id" class="form-control search-select">
+                        <option value="">Select Role</option>
+                        @foreach ($role as $roles )
+                            <option value="{{$roles['id']}}">{{$roles['name']}}</option>
+                        @endforeach
+                    </select>
+                </div>
 
                 <div class="mb-5">
                     <button class="btn btn-primary mr-2 mb-2 mb-md-0 text-white">Add Role</button>
@@ -110,3 +153,10 @@
 </div>
 @endsection
 
+@section('java_script')
+<script>
+    $(document).ready(function() {
+    $('.search-select').select2();
+});
+</script>
+@endsection

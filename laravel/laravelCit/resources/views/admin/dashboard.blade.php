@@ -18,6 +18,8 @@
 	<link rel="stylesheet" href="{{asset('admin_asset/css/demo_1/style.css')}}">
   <!-- End layout styles -->
   <link rel="shortcut icon" href="{{asset('admin_asset/images/favicon.png')}}" />
+  {{-- select 2 for select-option serach --}}
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 </head>
 <body>
 	<div class="main-wrapper">
@@ -51,18 +53,22 @@
                     <i class="link-arrow" data-feather="chevron-down"></i>
                     </a>
                     <div class="collapse" id="emails">
-                    <ul class="nav sub-menu">
-                        <li class="nav-item">
-                        <a href="{{route('user')}}" class="nav-link">All Users</a>
-                        </li>
+                        <ul class="nav sub-menu">
+                            <li class="nav-item">
+                                <a href="{{route('user')}}" class="nav-link">All Users</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('trashUser')}}" class="nav-link">Trash Users</a>
+                            </li>
 
-                    </ul>
+                        </ul>
                     </div>
                 </li>
 
                 <li class="nav-item nav-category">Category</li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="collapse" href="#emails" role="button" aria-expanded="false" aria-controls="emails">
+                    <a class="nav-link" data-toggle="collapse" href="#emails" role="button" aria-expanded="false"
+                    aria-controls="emails">
                     <i class="link-icon" data-feather="mail"></i>
                     <span class="link-title">Category</span>
                     <i class="link-arrow" data-feather="chevron-down"></i>
@@ -84,7 +90,8 @@
                 </li>
 
                 <li class="nav-item">
-                    <a  href="{{route('role')}}" class="nav-link"  role="button" aria-expanded="false" aria-controls="emails">
+                    <a  href="{{route('role')}}" class="nav-link"  role="button" aria-expanded="false"
+                    aria-controls="emails">
                     <i class="link-icon" data-feather="mail"></i>
                     <span class="link-title">Role</span>
 
@@ -150,17 +157,22 @@
 					</form>
 					<ul class="navbar-nav">
 						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<i class="flag-icon flag-icon-us mt-1" title="us"></i> <span class="font-weight-medium ml-1 mr-1 d-none d-md-inline-block">English</span>
+							<a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<i class="flag-icon flag-icon-us mt-1" title="us"></i>
+                                <span class="font-weight-medium ml-1 mr-1 d-none d-md-inline-block">English</span>
 							</a>
 							<div class="dropdown-menu" aria-labelledby="languageDropdown">
-                                <a href="javascript:;" class="dropdown-item py-2"><i class="flag-icon flag-icon-us" title="us" id="us"></i> <span class="ml-1"> English </span></a>
+                                <a href="javascript:;" class="dropdown-item py-2">
+                                    <i class="flag-icon flag-icon-us" title="us" id="us"></i>
+                                    <span class="ml-1"> English </span></a>
 
 							</div>
                         </li>
 
 						<li class="nav-item dropdown nav-messages">
-							<a class="nav-link dropdown-toggle" href="#" id="messageDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<a class="nav-link dropdown-toggle" href="#" id="messageDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								<i data-feather="mail"></i>
 							</a>
 							<div class="dropdown-menu" aria-labelledby="messageDropdown">
@@ -190,7 +202,8 @@
 							</div>
 						</li>
 						<li class="nav-item dropdown nav-notifications">
-							<a class="nav-link dropdown-toggle" href="#" id="notificationDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<a class="nav-link dropdown-toggle" href="#" id="notificationDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								<i data-feather="bell"></i>
 								<div class="indicator">
 									<div class="circle"></div>
@@ -220,14 +233,16 @@
 							</div>
 						</li>
 						<li class="nav-item dropdown nav-profile">
-							<a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<img src="{{asset('upload/user')}}/{{Auth::user()->image}}" alt="profile">
+							<a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img src="{{asset('upload/user')}}/{{Auth::user()->image}}" alt="profile">
+
 							</a>
 							<div class="dropdown-menu" aria-labelledby="profileDropdown">
 								<div class="dropdown-header d-flex flex-column align-items-center">
 									<div class="figure mb-3">
-										<img src="{{asset('upload/user')}}/{{Auth::user()->image}}" alt="">
-									</div>
+                                        <img src="{{asset('upload/user')}}/{{Auth::user()->image}}" alt="profile">
+                                    </div>
 									<div class="info text-center">
 										<p class="name font-weight-bold mb-0">{{Auth::user()->name}}</p>
 										<p class="email text-muted mb-3">{{Auth::user()->email}}</p>
@@ -249,13 +264,15 @@
 										</li>
 
 										<li class="nav-item">
-											<a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault();
+											<a href="{{ route('logout') }}"
+                                            class="nav-link" onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();">
 
 												<i data-feather="log-out"></i>
 												<span>Log Out</span>
 											</a>
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                            class="d-none">
                                                 @csrf
                                             </form>
 										</li>
@@ -275,8 +292,10 @@
 
 			<!-- partial:../../partials/_footer.html -->
 			<footer class="footer d-flex flex-column flex-md-row align-items-center justify-content-between">
-				<p class="text-muted text-center text-md-left">Copyright © 2021 <a href="https://www.nobleui.com" target="_blank">NobleUI</a>. All rights reserved</p>
-				<p class="text-muted text-center text-md-left mb-0 d-none d-md-block">Handcrafted With <i class="mb-1 text-primary ml-1 icon-small" data-feather="heart"></i></p>
+				<p class="text-muted text-center text-md-left">Copyright © 2021 <a
+                    href="https://www.nobleui.com" target="_blank">NobleUI</a>. All rights reserved</p>
+				<p class="text-muted text-center text-md-left mb-0 d-none d-md-block">Handcrafted With
+                    <i class="mb-1 text-primary ml-1 icon-small" data-feather="heart"></i></p>
 			</footer>
 			<!-- partial -->
 
@@ -296,6 +315,7 @@
   <!-- end custom js for this page -->
   {{-- sweet alert --}}
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
   @yield('java_script')
 </body>
 </html>

@@ -25,10 +25,14 @@ Route::get('/', function () {
 });
 
 Route::get('/user',[userCon::class,'index'])->name('user');
+Route::get('/trashUser',[userCon::class,'trashUser'])->name('trashUser');
 Route::get('/user/editProfile',[userCon::class,'showEditPage'])->name('editProfile');
 Route::post('/user/saveEditUser/32/898',[userCon::class,'saveEditPage'])->name('save_edit_user');
 Route::post('/user/saveEditUser/image/78/uis',[userCon::class,'saveUserImage'])->name('save_edit_user_image');
-
+Route::get('/userDelete/{id}',[userCon::class,'userDelete'])->name('userDelete');
+Route::get('/userRestore/{id}',[userCon::class,'userRestore'])->name('userRestore');
+Route::post('/userCheckDelete',[userCon::class,'userCheckDelete'])->name('userCheckDelete');
+Route::get('/userHardDelete/{id}',[userCon::class,'userHardDelete'])->name('userHardDelete');
 //Category
 Route::get('/showCategory',[categoryCon::class,'showCategoryPage'])->name('category');
 Route::post('/saveCategory/catego/youi/po/e',[categoryCon::class,'saveCategory'])->name('saveCategory');
@@ -44,3 +48,4 @@ Route::get('/deleteTag/{id}',[categoryCon::class,'deleteTag'])->name('deleteTag'
 Route::get('/showRole',[categoryCon::class,'showRolePage'])->name('role');
 Route::post('/saveRole',[categoryCon::class,'saveRole'])->name('saveRole');
 Route::post('/savePermission',[categoryCon::class,'savePermission'])->name('savePermission');
+Route::post('/saveAssignRole',[categoryCon::class,'saveAssignRole'])->name('saveAssignRole');

@@ -23,11 +23,9 @@
                             <td>
                                 <button class="btn btn-info"><a href="{{route('editCategory',$categories['id'])}}">Edit</a></button>
                                 <button class="btn btn-danger delBut" data-link="{{route('deleteCategory',$categories['id'])}}"><a href="#">Delete</a></button>
-
                             </td>
                         </tr>
                     @endforeach
-
                 </table>
             </div>
         </div>
@@ -55,8 +53,6 @@
                         </span>
                     @enderror
                 </div>
-
-
 
                 <div class="mt-3">
                     <button class="btn btn-primary mr-2 mb-2 mb-md-0 text-white">Submit</button>

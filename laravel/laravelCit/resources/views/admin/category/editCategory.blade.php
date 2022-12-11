@@ -28,8 +28,6 @@
                     @enderror
                 </div>
 
-
-
                 <div class="mt-3">
                     <button class="btn btn-primary mr-2 mb-2 mb-md-0 text-white">Submit</button>
                 </div>

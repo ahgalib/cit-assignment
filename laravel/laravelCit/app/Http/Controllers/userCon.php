@@ -11,8 +11,18 @@ use Image;
 class userCon extends Controller
 {
     public function index(){
-        $user = User::all();
+        $user = User::paginate(3);
         return view('admin.user.user',compact('user'));
+    }
+
+    public function trashUser(){
+        $user = User::onlyTrashed()->get();
+        return view('admin.user.trash_user',compact('user'));
+    }
+
+    public function userRestore($id){
+        User::onlyTrashed()->find($id)->restore();
+        return redirect('/user');
     }
 
     public function showEditPage(){
@@ -59,5 +69,22 @@ class userCon extends Controller
         ]);
 
         return back()->with('success','profile picture updated successfully');
+    }
+
+    public function userCheckDelete(Request $request){
+        foreach($request->check as $check_del){
+            User::find($check_del)->delete();
+        }
+        return back();
+    }
+
+    public function userDelete($id){
+        User::find($id)->delete();
+        return back();
+    }
+
+    public function userHardDelete($id){
+        User::onlyTrashed($id)->forceDelete();
+        return back();
     }
 }
