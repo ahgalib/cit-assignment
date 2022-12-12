@@ -46,7 +46,7 @@
                 <div class="card-header">{{ __('Dashboard') }}</div>
                 <div class="card-body ">
 
-                    <table class="table-striped" style="font-size:15px;text-align:center;">
+                    <table class="table table-striped" style="font-size:15px;text-align:center;">
                         <tr>
                             <th>SI no</th>
                             <th>Name</th>
@@ -54,7 +54,7 @@
                             <th>Permission</th>
                             <th>Action</th>
                         </tr>
-                        @foreach($user as $si=>$users)
+                        @forelse($user as $si=>$users)
                         <tr>
                             <td>{{$si+1}}</td>
                             <td>{{$users->name}}</td>

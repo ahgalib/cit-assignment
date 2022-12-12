@@ -1,12 +1,18 @@
 @extends('admin.dashboard')
-
 @section('content')
+
+<nav class="page-breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">User</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Edit user</li>
+    </ol>
+</nav>
+
 <div class="container">
     <div class="row">
         <div class="col-md-6">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
+                <div class="card-header">{{ __('Post') }}</div>
                 <table class="table-striped">
                     <tr>
                         <th>SI no</th>

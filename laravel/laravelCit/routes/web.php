@@ -4,6 +4,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\userCon;
 use App\Http\Controllers\categoryCon;
+use App\Http\Controllers\postCon;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,3 +50,7 @@ Route::get('/showRole',[categoryCon::class,'showRolePage'])->name('role');
 Route::post('/saveRole',[categoryCon::class,'saveRole'])->name('saveRole');
 Route::post('/savePermission',[categoryCon::class,'savePermission'])->name('savePermission');
 Route::post('/saveAssignRole',[categoryCon::class,'saveAssignRole'])->name('saveAssignRole');
+
+//post
+Route::get('/addpost',[postCon::class,'showAddPost'])->name('addPost');
+Route::post('/savePost',[postCon::class,'savePost'])->name('savePost');
