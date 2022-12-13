@@ -19,8 +19,10 @@ return new class extends Migration
             $table->integer('category_id');
             $table->string('title');
             $table->string('short_desc');
-            $table->string('description');
+            $table->longText('description');
+            $table->integer('tag_id');
             $table->string('image');
+            $table->string('slug');
             $table->timestamps();
         });
     }

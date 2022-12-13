@@ -63,11 +63,9 @@ class userCon extends Controller
         $image_name = Auth::id().'.'.$extension;
         //echo $image_name;die;
         Image::make($file_name)->save(public_path('upload/user/'.$image_name));
-
         User::find(Auth::id())->update([
             'image'=>$image_name,
         ]);
-
         return back()->with('success','profile picture updated successfully');
     }
 

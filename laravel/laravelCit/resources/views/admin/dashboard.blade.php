@@ -13,13 +13,15 @@
 	<!-- inject:css -->
 	<link rel="stylesheet" href="{{asset('admin_asset/fonts/feather-font/css/iconfont.css')}}">
 	<link rel="stylesheet" href="{{asset('admin_asset/vendors/flag-icon-css/css/flag-icon.min.css')}}">
-	<!-- endinject -->
-  <!-- Layout styles -->
-	<link rel="stylesheet" href="{{asset('admin_asset/css/demo_1/style.css')}}">
-  <!-- End layout styles -->
-  <link rel="shortcut icon" href="{{asset('admin_asset/images/favicon.png')}}" />
-  {{-- select 2 for select-option serach --}}
-  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="{{asset('admin_asset/css/demo_1/style.css')}}">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="{{asset('admin_asset/images/favicon.png')}}" />
+    {{-- select 2 for select-option serach --}}
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    {{-- summerNote --}}
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 </head>
 <body>
 	<div class="main-wrapper">
@@ -94,11 +96,32 @@
                     aria-controls="emails">
                     <i class="link-icon" data-feather="mail"></i>
                     <span class="link-title">Role</span>
-
                     </a>
-
                 </li>
 
+                <li class="nav-item nav-category">Posts</li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="collapse" href="#emails" role="button" aria-expanded="false"
+                        aria-controls="emails">
+                        <i class="link-icon" data-feather="mail"></i>
+                        <span class="link-title">Post</span>
+                        <i class="link-arrow" data-feather="chevron-down"></i>
+                    </a>
+                    <div class="collapse" id="emails">
+                    <ul class="nav sub-menu">
+                        <li class="nav-item">
+                        <a href="/post" class="nav-link">Post</a>
+                        </li>
+
+                    </ul>
+                    <ul class="nav sub-menu">
+                        <li class="nav-item">
+                        <a href="/addpost" class="nav-link">Add Post</a>
+                        </li>
+
+                    </ul>
+                    </div>
+                </li>
 
             </ul>
         </div>
@@ -316,6 +339,7 @@
   {{-- sweet alert --}}
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
   @yield('java_script')
 </body>
 </html>

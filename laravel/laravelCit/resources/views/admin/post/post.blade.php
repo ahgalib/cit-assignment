@@ -27,10 +27,10 @@
                             <td>{{$categories['category_name']}}</td>
                             <td><img src="{{asset('upload/category')}}/{{$categories['category_image']}}" style="width:120px;"></td>
                             @can('can_edit_category')
-                            <td>
-                                <button class="btn btn-info"><a href="{{route('editCategory',$categories['id'])}}">Edit</a></button>
-                                <button class="btn btn-danger delBut" data-link="{{route('deleteCategory',$categories['id'])}}"><a href="#">Delete</a></button>
-                            </td>
+                                <td>
+                                    <button class="btn btn-info"><a href="{{route('editCategory',$categories['id'])}}">Edit</a></button>
+                                    <button class="btn btn-danger delBut" data-link="{{route('deleteCategory',$categories['id'])}}"><a href="#">Delete</a></button>
+                                </td>
                             @endcan
                         </tr>
                     @endforeach
@@ -74,6 +74,11 @@
 
 @section('java_script')
 <script>
+    $(document).ready(function() {
+        $('#summernote').summernote();
+    });
+
+
     $('.delBut').click(function(){
         Swal.fire({
             title: 'Are you sure?',
