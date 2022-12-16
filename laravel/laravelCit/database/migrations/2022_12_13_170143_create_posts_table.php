@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
+            $table->integer('author_id');
             $table->integer('category_id');
             $table->string('title');
             $table->string('short_desc');
             $table->longText('description');
-            $table->integer('tag_id');
+            $table->string('tag_id');//cz there will be multiple id
             $table->string('image');
             $table->string('slug');
             $table->timestamps();

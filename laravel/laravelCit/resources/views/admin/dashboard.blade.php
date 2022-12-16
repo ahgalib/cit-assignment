@@ -110,7 +110,7 @@
                     <div class="collapse" id="emails">
                     <ul class="nav sub-menu">
                         <li class="nav-item">
-                        <a href="/post" class="nav-link">Post</a>
+                        <a href="{{route('post')}}" class="nav-link">Post</a>
                         </li>
 
                     </ul>

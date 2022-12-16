@@ -10,26 +10,47 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">{{ __('Post') }}</div>
                 <table class="table-striped">
                     <tr>
                         <th>SI no</th>
-                        <th>Name</th>
+                        <th>Title</th>
+                        <th>Author Name</th>
+                        <th>Category Name</th>
+                        <th>Short Desc</th>
+                        <th>Tag</th>
+
                         <th>Image</th>
                         <th>Action</th>
                     </tr>
 
-                    @foreach ($category as $key=>$categories)
+                    @foreach ($post as $key=>$posts)
                         <tr>
                             <td>{{$key+1}}</td>
-                            <td>{{$categories['category_name']}}</td>
-                            <td><img src="{{asset('upload/category')}}/{{$categories['category_image']}}" style="width:120px;"></td>
+                            <td>{{$posts['title']}}</td>
+                            <td>{{$posts->rel_to_user['name']}}</td>
+                            <td>{{$posts->rel_to_cate['category_name']}}</td>
+                            <td>{{substr($posts['short_desc'],0,20)}}</td>
+                            <td>
+                                @php
+                                    $explode = explode(',',$posts->tag_id);
+                                    //print_r($explode);
+                                    foreach ($explode as $value) {
+                                        // echo $value."<br>";
+                                        $tag =  App\Models\Tag::where('id',$value)->first();
+                                        echo $tag["tag_name"]."<br>";
+                                    }
+                                @endphp
+
+
+                            </td>
+                            <td><img src="{{asset('upload/posts')}}/{{$posts['image']}}" style="width:110px;height:70px;"></td>
                             @can('can_edit_category')
                                 <td>
-                                    <button class="btn btn-info"><a href="{{route('editCategory',$categories['id'])}}">Edit</a></button>
-                                    <button class="btn btn-danger delBut" data-link="{{route('deleteCategory',$categories['id'])}}"><a href="#">Delete</a></button>
+                                    <button class="btn btn-info"><a href="{{route('editpost',$posts['id'])}}">Edit</a></button>
+                                    <button class="btn btn-danger delBut" data-link="{{route('deleteCategory',$posts['id'])}}"><a href="#">Delete</a></button>
                                 </td>
                             @endcan
                         </tr>
@@ -38,36 +59,7 @@
             </div>
         </div>
 
-        <div class="col-md-4">
-            <form method="post" action="{{ route('saveCategory') }}" enctype="multipart/form-data">
-                @csrf
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Category Name</label>
-                    <input type="text" class="form-control @error('category_name') is-invalid @enderror" name="category_name" value="{{ old('category_name') }}">
 
-                    @error('category_name')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">category image</label>
-                    <input type="file" class="form-control @error('category_image') is-invalid @enderror" name="category_image">
-
-                    @error('category_image')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
-
-                <div class="mt-3">
-                    <button class="btn btn-primary mr-2 mb-2 mb-md-0 text-white">Submit</button>
-                </div>
-
-            </form>
-        </div>
     </div>
 </div>
 @endsection

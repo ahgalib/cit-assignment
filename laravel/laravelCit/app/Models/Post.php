@@ -9,4 +9,13 @@ class Post extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
+
+    public function rel_to_cate(){
+        return $this->belongsTo(Category::class,'category_id');
+    }
+    public function rel_to_user(){
+        return $this->belongsTo(User::class,'author_id');
+    }
 }
+
+

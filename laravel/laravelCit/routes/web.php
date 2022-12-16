@@ -52,5 +52,8 @@ Route::post('/savePermission',[categoryCon::class,'savePermission'])->name('save
 Route::post('/saveAssignRole',[categoryCon::class,'saveAssignRole'])->name('saveAssignRole');
 
 //post
+Route::get('/post',[postCon::class,'showPost'])->name('post');
 Route::get('/addpost',[postCon::class,'showAddPost'])->name('addPost');
 Route::post('/savePost',[postCon::class,'savePost'])->name('savePost');
+Route::get('/editpost/{id}',[postCon::class,'editpost'])->name('editpost');
+Route::post('/saveEditPost',[postCon::class,'saveEditPost'])->name('saveEditPost');

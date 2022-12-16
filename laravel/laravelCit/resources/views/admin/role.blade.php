@@ -46,7 +46,7 @@
                 <div class="card-header">{{ __('Dashboard') }}</div>
                 <div class="card-body ">
 
-                    <table class="table table-striped" style="font-size:15px;text-align:center;">
+                    <table class="table-striped" style="font-size:15px;text-align:center;">
                         <tr>
                             <th>SI no</th>
                             <th>Name</th>

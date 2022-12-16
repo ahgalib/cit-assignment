@@ -12,6 +12,11 @@ use Str;
 
 class postCon extends Controller
 {
+    public function showPost(){
+        $post = Post::where('author_id',Auth::id())->get();
+        return view('admin.post.post',compact('post'));
+    }
+
     public function showAddPost(){
         $category = Category::all();
         $tag = Tag::all();
@@ -26,21 +31,31 @@ class postCon extends Controller
         //     'description'=> 'required',
         //     'image'=> 'required',
         // ]);
+
+        //multile tag
+        $after_imploade = implode(',',$request->tag_id);
         $image = $request['image'];
         $image_ext = $image->getClientOriginalExtension();
         $image_name = rand(11111,9999).'.'.$image_ext;
         //echo $image_name;die;
         Image::make($image)->save(public_path('upload/posts/'.$image_name));
         Post::create([
-            'user_id'=>Auth::user()->id,
+            'author_id'=>Auth::user()->id,//short-cut Auth::id()
             'category_id'=>$request['category_id'],
             'title'=>$request['title'],
             'short_desc'=>$request['short_desc'],
             'description'=>$request['description'],
-            'tag_id' =>$request['tag_id'],
+            'tag_id' =>$after_imploade,
             'image'=> $image_name,
             'slug'=>Str::lower(str_replace(' ','-',$request->title).rand(1111,9999)),
         ]);
         return back();
+    }
+
+    public function editpost($id){
+        $post = Post::find($id);
+        $category = Category::all();
+        $tag = Tag::all();
+        return view('admin.post.editPost',compact('post','category','tag'));
     }
 }
