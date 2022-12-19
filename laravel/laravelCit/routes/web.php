@@ -53,7 +53,12 @@ Route::post('/saveAssignRole',[categoryCon::class,'saveAssignRole'])->name('save
 
 //post
 Route::get('/post',[postCon::class,'showPost'])->name('post');
+Route::get('/viewPost/{id}',[postCon::class,'viewPost'])->name('viewPost');
 Route::get('/addpost',[postCon::class,'showAddPost'])->name('addPost');
 Route::post('/savePost',[postCon::class,'savePost'])->name('savePost');
 Route::get('/editpost/{id}',[postCon::class,'editpost'])->name('editpost');
 Route::post('/saveEditPost',[postCon::class,'saveEditPost'])->name('saveEditPost');
+
+Route::get('/master',function(){
+    return view('front_end.index');
+});

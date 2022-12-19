@@ -24,13 +24,14 @@ class postCon extends Controller
     }
 
     public function savePost(Request $request){
-        // $request->validate([
-        //     'category_id'=> 'required',
-        //     'title'=> 'required',
-        //     'short_desc'=> 'required',
-        //     'description'=> 'required',
-        //     'image'=> 'required',
-        // ]);
+        $request->validate([
+            'category_id'=> 'required',
+            'title'=> 'required',
+            'short_desc'=> 'required',
+            'description'=> 'required',
+            'tag_id'=> 'required',
+            'image'=> 'required',
+        ]);
 
         //multile tag
         $after_imploade = implode(',',$request->tag_id);
@@ -55,7 +56,19 @@ class postCon extends Controller
     public function editpost($id){
         $post = Post::find($id);
         $category = Category::all();
+        $tagName = Tag::all();
+
+        $expl_tag = explode(',',$post->tag_id);
+        foreach($expl_tag as $sin_tag){
+            $tagId = Tag::where('id',$sin_tag)->get();
+        }
+        return view('admin.post.editPost',compact('post','category','tagName','tagId'));
+    }
+
+    public function viewPost($id){
+        $post = Post::find($id);
+        $category = Category::all();
         $tag = Tag::all();
-        return view('admin.post.editPost',compact('post','category','tag'));
+        return view('admin.post.viewPost',compact('post','category','tag'));
     }
 }

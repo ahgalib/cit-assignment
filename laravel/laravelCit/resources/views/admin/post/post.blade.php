@@ -29,10 +29,10 @@
                     @foreach ($post as $key=>$posts)
                         <tr>
                             <td>{{$key+1}}</td>
-                            <td>{{$posts['title']}}</td>
+                            <td>{{substr($posts['title'],0,20)."..."}}</td>
                             <td>{{$posts->rel_to_user['name']}}</td>
                             <td>{{$posts->rel_to_cate['category_name']}}</td>
-                            <td>{{substr($posts['short_desc'],0,20)}}</td>
+                            <td>{{substr($posts['short_desc'],0,30)}}</td>
                             <td>
                                 @php
                                     $explode = explode(',',$posts->tag_id);
@@ -43,14 +43,13 @@
                                         echo $tag["tag_name"]."<br>";
                                     }
                                 @endphp
-
-
                             </td>
                             <td><img src="{{asset('upload/posts')}}/{{$posts['image']}}" style="width:110px;height:70px;"></td>
                             @can('can_edit_category')
                                 <td>
-                                    <button class="btn btn-info"><a href="{{route('editpost',$posts['id'])}}">Edit</a></button>
-                                    <button class="btn btn-danger delBut" data-link="{{route('deleteCategory',$posts['id'])}}"><a href="#">Delete</a></button>
+                                    <button class="btn btn-success"><a class="text-dark" href="{{route('viewPost',$posts['id'])}}">view post</a></button>
+                                    <button class="btn btn-info"><a class="text-dark" href="{{route('editpost',$posts['id'])}}">Edit</a></button>
+                                    <button class="btn btn-danger delBut" data-link="{{route('deleteCategory',$posts['id'])}}"><a class="text-dark" href="#">Delete</a></button>
                                 </td>
                             @endcan
                         </tr>
@@ -58,8 +57,6 @@
                 </table>
             </div>
         </div>
-
-
     </div>
 </div>
 @endsection
@@ -69,7 +66,6 @@
     $(document).ready(function() {
         $('#summernote').summernote();
     });
-
 
     $('.delBut').click(function(){
         Swal.fire({
@@ -82,12 +78,9 @@
             confirmButtonText: 'Yes, delete it!'
             }).then((result) => {
             if (result.isConfirmed) {
-
-
-                var delPath = $(this).attr('data-link');
+                 var delPath = $(this).attr('data-link');
                 //alert(delPath);
                 window.location.href = delPath;
-
             }
         })
     })

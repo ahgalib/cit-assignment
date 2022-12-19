@@ -3,8 +3,8 @@
 
 <nav class="page-breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">User</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Edit user</li>
+        <li class="breadcrumb-item"><a href="#">Post</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Add user</li>
     </ol>
 </nav>
 
@@ -75,7 +75,6 @@
                         @endforeach
                     </div>
                 </div>
-
 
                 <div class="form-group">
                     <label for="exampleInputPassword1">Post image</label>
