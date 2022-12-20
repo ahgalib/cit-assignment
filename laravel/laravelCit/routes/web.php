@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\userCon;
 use App\Http\Controllers\categoryCon;
 use App\Http\Controllers\postCon;
+use App\Http\Controllers\FrontEndCon;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -59,6 +61,6 @@ Route::post('/savePost',[postCon::class,'savePost'])->name('savePost');
 Route::get('/editpost/{id}',[postCon::class,'editpost'])->name('editpost');
 Route::post('/saveEditPost',[postCon::class,'saveEditPost'])->name('saveEditPost');
 
-Route::get('/master',function(){
-    return view('front_end.index');
-});
+//Front end section
+Route::get('/',[FrontEndCon::class,'index'])->name('index');
+Route::get('/singlePost/{slug}',[FrontEndCon::class,'singlePost'])->name('singlePost');
